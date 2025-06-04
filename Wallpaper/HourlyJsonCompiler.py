@@ -60,7 +60,7 @@ def recursive_choose_frames(arr):
 dirc = recursive_data_load(os.getcwd() + "\\Resources\\" + str(datetime.now().hour))
 frames = []
 
-while len(frames) < 3600 * FPS:
+while len(frames) < 4000 * FPS:
     for f in recursive_choose_frames(dirc):
         frames.append(f)
 
