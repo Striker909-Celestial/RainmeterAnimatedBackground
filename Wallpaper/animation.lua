@@ -1,6 +1,5 @@
 function get_lines(filename)
     local lines = {}
-    -- io.lines returns an iterator, so we need to manually unpack it into an array
     for line in io.lines(filename) do
         lines[#lines+1] = line
     end
@@ -8,15 +7,23 @@ function get_lines(filename)
 end
 
 function Initialize()
-    os.execute("python HourlyJsonComplier.py")
+
+    local pythonPath = SKIN:MakePathAbsolute('HourlyScheduler.py')
+    SKIN:Bang('!Execute ["python" "' .. pythonPath .. '"]')
+
     hour = os.date("%H")
     start = os.clock()
-    frames = get_lines(SKIN:MakePathAbsolute("Resources/frames.txt"))
+
+    local framesPath = SKIN:MakePathAbsolute("Resources\\frames.txt")
+
+    frames = get_lines(framesPath)
+
 end
 
 function Update()
     if hour ~= os.date("%H") then
-        os.execute("python HourlyJsonComplier.py")
+        local pythonPath = SKIN:MakePathAbsolute('HourlyScheduler.py')
+        SKIN:Bang('!Execute ["python" "' .. pythonPath .. '"]')
         hour = os.date("%H")
         start = os.clock()
         frames = get_lines(SKIN:MakePathAbsolute("Resources/frames.txt"))
