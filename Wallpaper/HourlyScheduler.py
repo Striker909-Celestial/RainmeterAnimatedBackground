@@ -120,8 +120,7 @@ while len(frames) < 4000 * FPS:
     for f in recursive_choose_frames(dirc):
         frames.append(f)
 
-# while os.getcwd()[-9:].lower() != "resources":
-#     os.chdir("..")
+os.chdir(SCRIPT_DIR + "\\Resources")
 
 data = ""
 for frame in frames:
